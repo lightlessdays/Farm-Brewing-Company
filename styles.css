@@ -4245,8 +4245,8 @@ html {
   }
   
   .social-link {
-    width: 64px;
-    height: 64px;
+    width: 43px;
+    height: 43px;
     background-color: var(--primary-color-02--p2-opacity-20);
     border-radius: 50%;
     justify-content: center;
@@ -4255,8 +4255,8 @@ html {
   }
   
   .social-icon {
-    width: 20px;
-    height: 20px;
+    width: 30px;
+    height: 30px;
   }
   
   .footer-nav {
@@ -4350,6 +4350,13 @@ html {
   .special-wrapper.for-hours.is-color-s2 {
     background-color: var(--secondary-colors--s2-sunglow);
   }
+
+
+  .special-wrapper.for-hours.is-colors-s4 {
+    background-color: #90ee90;
+  }
+
+  
   
   .footer-hours {
     width: 100%;
