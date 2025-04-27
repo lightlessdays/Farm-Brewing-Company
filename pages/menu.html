@@ -1,127 +1,97 @@
 <!DOCTYPE html>
-<html data-wf-domain="alehous-template.webflow.io" data-wf-page="654923b6456a03dfd0b00394" data-wf-site="6542a22dcd975cbfce7ba7cb" lang="en">
+<html data-wf-domain="alehous-template.webflow.io" data-wf-page="food-menu" lang="en">
 <head>
     <meta charset="utf-8"/>
-    <title>Tasting Room Menu | Alehous Brewing Co.</title>
+    <title>Food Menu | Alehous</title>
     <meta content="width=device-width, initial-scale=1" name="viewport"/>
     <link href="../styles.css" rel="stylesheet" type="text/css"/>
     <style>
-        /* Additional styles for the menu page */
-        .menu-section {
-            padding: 80px 0;
-        }
-        
-        .menu-header {
-            text-align: center;
-            margin-bottom: 60px;
-        }
-        
-        .gallery {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 20px;
-            margin: 40px 0;
-        }
-        
-        .gallery img {
-            width: 100%;
-            height: 300px;
-            object-fit: cover;
-            border-radius: 8px;
-        }
-        
-        .menu-tabs {
+        /* Food Menu Specific Styles */
+        .food-tabs {
             display: flex;
             justify-content: center;
             margin-bottom: 40px;
             flex-wrap: wrap;
-            gap: 10px;
         }
         
-        .menu-tab {
+        .food-tab {
             padding: 12px 24px;
-            background: transparent;
-            border: 2px solid #e2b33a;
-            color: #e2b33a;
-            font-weight: 600;
-            text-transform: uppercase;
+            margin: 0 8px 8px;
             cursor: pointer;
-            transition: all 0.3s ease;
+            border: 1px solid #ddd;
             border-radius: 4px;
+            font-weight: 600;
+            transition: all 0.3s ease;
         }
         
-        .menu-tab.active {
-            background: #e2b33a;
-            color: #1a1a1a;
+        .food-tab:hover {
+            background-color: #f5f5f5;
         }
         
-        .menu-tab:hover {
-            background: rgba(226, 179, 58, 0.2);
+        .food-tab.active {
+            background-color: #333;
+            color: white;
+            border-color: #333;
         }
         
-        .menu-items {
+        .food-items {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
             gap: 30px;
         }
         
-        .menu-item {
-            border: 1px solid #333;
+        .food-item {
             border-radius: 8px;
             overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
             transition: transform 0.3s ease;
         }
         
-        .menu-item:hover {
+        .food-item:hover {
             transform: translateY(-5px);
         }
         
-        .menu-item-image {
+        .food-image {
             height: 200px;
+            overflow: hidden;
+        }
+        
+        .food-image img {
             width: 100%;
+            height: 100%;
             object-fit: cover;
+            transition: transform 0.5s ease;
         }
         
-        .menu-item-content {
+        .food-item:hover .food-image img {
+            transform: scale(1.05);
+        }
+        
+        .food-info {
             padding: 20px;
+            background: white;
         }
         
-        .menu-item-title {
-            font-size: 1.4rem;
-            margin-bottom: 8px;
-            color: #e2b33a;
+        .food-title {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            color: #333;
         }
         
-        .menu-item-price {
-            font-weight: bold;
-            font-size: 1.2rem;
-            margin-bottom: 12px;
-        }
-        
-        .menu-item-desc {
-            color: #ccc;
+        .food-description {
+            color: #666;
+            margin-bottom: 15px;
             line-height: 1.5;
         }
         
-        .tab-content {
-            display: none;
+        .food-price {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: #d4a017;
         }
         
-        .tab-content.active {
-            display: block;
-        }
-        
-        @media (max-width: 768px) {
-            .gallery {
-                grid-template-columns: 1fr;
-            }
-            
-            .menu-tabs {
-                flex-direction: column;
-                align-items: center;
-            }
-            
-            .menu-items {
+        @media (max-width: 767px) {
+            .food-items {
                 grid-template-columns: 1fr;
             }
         }
@@ -129,350 +99,348 @@
 </head>
 <body>
     <div class="page-wrapper">
+        <header class="header">
+            <!-- Same header as beers page -->
+        </header>
+        
         <main class="sections for-inner-pages">
-            <section class="menu-section">
-                <div class="container">
-                    <!-- Menu Header -->
-                    <header class="header">
-                        <div class="nav-bar">
-                            <div class="container">
-                                <nav class="nav">
-                                    <a href="/" class="brand w-inline-block">
-                                        <img src="../../assets/farmcountry_logo.png" loading="lazy" alt="alehous" class="brand-image"/>
+            <header class="header">
+                <div class="nav-bar">
+                    <div class="container">
+                        <nav class="nav">
+                            <a href="/" class="brand w-inline-block">
+                                <img src="../../assets/farmcountry_logo.png" loading="lazy" alt="alehous" class="brand-image"/>
+                            </a>
+                            <div class="nav-buttons">
+                                <a data-w-id="7f05b51b-9041-cb3d-b2fd-742ffecd78bd" href="#" class="menu-button w-inline-block">
+                                    <div class="icon-wrapper">
+                                        <img src="https://cdn.prod.website-files.com/6542a22dcd975cbfce7ba7cb/6543d70623da9d975120086e_wind-2.svg" loading="lazy" alt="menu" class="icon"/>
+                                    </div>
+                                </a>
+                               
+                            
+                            </div>
+                            <div class="menu">
+                                <div class="menu-close">
+                                    <a data-w-id="7f05b51b-9041-cb3d-b2fd-742ffecd78f7" href="#" class="close-button w-inline-block">
+                                        <div class="icon-wrapper">
+                                            <img src="https://cdn.prod.website-files.com/6542a22dcd975cbfce7ba7cb/65442d8cf750fb2d08a0dd2d_x-close.svg" loading="lazy" alt="close" class="icon"/>
+                                        </div>
                                     </a>
-                                    <div class="nav-buttons">
-                                        <a data-w-id="7f05b51b-9041-cb3d-b2fd-742ffecd78bd" href="#" class="menu-button w-inline-block">
-                                            <div class="icon-wrapper">
-                                                <img src="https://cdn.prod.website-files.com/6542a22dcd975cbfce7ba7cb/6543d70623da9d975120086e_wind-2.svg" loading="lazy" alt="menu" class="icon"/>
-                                            </div>
+                                </div>
+                                <div class="menu-content">
+                                    <div class="menu-items">
+                                        <a href="/home-variants/home-v1" aria-current="page" class="menu-link w-inline-block w--current">
+                                            <div class="uppercase-large">Home</div>
                                         </a>
+                                        <a href="/beers" class="menu-link w-inline-block">
+                                            <div class="uppercase-large">Tasting Room Menu</div>
+                                        </a>
+                                        <a href="/shop-variants/shop-v2" class="menu-link w-inline-block">
+                                            <div class="uppercase-large">Our Beers</div>
+                                        </a>
+                                        <a href="/events" class="menu-link w-inline-block">
+                                            <div class="uppercase-large">Events</div>
+                                        </a>
+                                        <a href="/blog-variants/blog-v2" class="menu-link w-inline-block">
+                                            <div class="uppercase-large">Store</div>
+                                        </a>
+                                        <a href="/wholesale" class="menu-link w-inline-block">
+                                            <div class="uppercase-large">Archived Beers</div>
+                                        </a>
+                                        <a href="/faq" class="menu-link w-inline-block">
+                                            <div class="uppercase-large">Our Story</div>
+                                        </a>
+                                        <a href="/wholesale" class="menu-link w-inline-block">
+                                            <div class="uppercase-large">Contact Us</div>
+                                        </a>
+                                        
+                                        <div id="w-node-_7f05b51b-9041-cb3d-b2fd-742ffecd7914-fecd78b9" class="menu-hour">
+                                            <div class="uppercase-regular">mon, wed</div>
+                                            <div class="uppercase-regular">1pm - 8pm</div>
+                                        </div>
+                                        <div id="w-node-_7f05b51b-9041-cb3d-b2fd-742ffecd7919-fecd78b9" class="menu-hour is-color-p3">
+                                            <div class="uppercase-regular">tue, thu</div>
+                                            <div class="uppercase-regular">1pm - 9pm</div>
+                                        </div>
+                                        <div id="w-node-_7f05b51b-9041-cb3d-b2fd-742ffecd791e-fecd78b9" class="menu-hour is-color-s2">
+                                            <div class="uppercase-regular">fri,sat</div>
+                                            <div class="uppercase-regular">12am - 11pm</div>
+                                        </div>
+                                        <div id="w-node-_7f05b51b-9041-cb3d-b2fd-742ffecd7919-fecd78b9" class="menu-hour is-color-p4">
+                                            <div class="uppercase-regular">sunday</div>
+                                            <div class="uppercase-regular">12am - 8pm</div>
+                                        </div>
                                        
-                                    
                                     </div>
-                                    <div class="menu">
-                                        <div class="menu-close">
-                                            <a data-w-id="7f05b51b-9041-cb3d-b2fd-742ffecd78f7" href="#" class="close-button w-inline-block">
-                                                <div class="icon-wrapper">
-                                                    <img src="https://cdn.prod.website-files.com/6542a22dcd975cbfce7ba7cb/65442d8cf750fb2d08a0dd2d_x-close.svg" loading="lazy" alt="close" class="icon"/>
-                                                </div>
-                                            </a>
-                                        </div>
-                                        <div class="menu-content">
-                                            <div class="menu-items">
-                                                <a href="/home-variants/home-v1" aria-current="page" class="menu-link w-inline-block w--current">
-                                                    <div class="uppercase-large">Home</div>
-                                                </a>
-                                                <a href="/beers" class="menu-link w-inline-block">
-                                                    <div class="uppercase-large">Tasting Room Menu</div>
-                                                </a>
-                                                <a href="/shop-variants/shop-v2" class="menu-link w-inline-block">
-                                                    <div class="uppercase-large">Our Beers</div>
-                                                </a>
-                                                <a href="/events" class="menu-link w-inline-block">
-                                                    <div class="uppercase-large">Events</div>
-                                                </a>
-                                                <a href="/blog-variants/blog-v2" class="menu-link w-inline-block">
-                                                    <div class="uppercase-large">Store</div>
-                                                </a>
-                                                <a href="/wholesale" class="menu-link w-inline-block">
-                                                    <div class="uppercase-large">Archived Beers</div>
-                                                </a>
-                                                <a href="/faq" class="menu-link w-inline-block">
-                                                    <div class="uppercase-large">Our Story</div>
-                                                </a>
-                                                <a href="/wholesale" class="menu-link w-inline-block">
-                                                    <div class="uppercase-large">Contact Us</div>
-                                                </a>
-                                                
-                                                <div id="w-node-_7f05b51b-9041-cb3d-b2fd-742ffecd7914-fecd78b9" class="menu-hour">
-                                                    <div class="uppercase-regular">mon, wed</div>
-                                                    <div class="uppercase-regular">1pm - 8pm</div>
-                                                </div>
-                                                <div id="w-node-_7f05b51b-9041-cb3d-b2fd-742ffecd7919-fecd78b9" class="menu-hour is-color-p3">
-                                                    <div class="uppercase-regular">tue, thu</div>
-                                                    <div class="uppercase-regular">1pm - 9pm</div>
-                                                </div>
-                                                <div id="w-node-_7f05b51b-9041-cb3d-b2fd-742ffecd791e-fecd78b9" class="menu-hour is-color-s2">
-                                                    <div class="uppercase-regular">fri,sat</div>
-                                                    <div class="uppercase-regular">12am - 11pm</div>
-                                                </div>
-                                                <div id="w-node-_7f05b51b-9041-cb3d-b2fd-742ffecd7919-fecd78b9" class="menu-hour is-color-p4">
-                                                    <div class="uppercase-regular">sunday</div>
-                                                    <div class="uppercase-regular">12am - 8pm</div>
-                                                </div>
-                                               
-                                            </div>
-                                        </div>
-                                    </div>
-                                </nav>
+                                </div>
+                            </div>
+                        </nav>
+                    </div>
+                </div>
+            </header>
+            <section class="intro">
+                <div class="container">
+                    <h1 class="heading-huge">Tasting Room Menu</h1>
+                    <p class="beerpagepara">Delicious dishes crafted to pair perfectly with our beers. Made with locally-sourced ingredients whenever possible.</p>
+                </div>
+            </section>
+            
+            <div class="spacer-regular after-intro"></div>
+            
+            <section class="beers">
+                <div class="container">
+                    <!-- Food Tabs -->
+                    <div class="food-tabs">
+                        <div class="food-tab active" data-category="all">All Items</div>
+                        <div class="food-tab" data-category="starters">Starters</div>
+                        <div class="food-tab" data-category="mains">Main Courses</div>
+                        <div class="food-tab" data-category="burgers">Burgers</div>
+                        <div class="food-tab" data-category="desserts">Desserts</div>
+                    </div>
+                    
+                    <!-- Food Items -->
+                    <div class="food-items" id="food-container">
+                        <!-- Starters -->
+                        <div class="food-item" data-category="starters">
+                            <div class="food-image">
+                                <img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd" alt="Beer Battered Onion Rings"/>
+                            </div>
+                            <div class="food-info">
+                                <h3 class="food-title">Beer Battered Onion Rings</h3>
+                                <p class="food-description">Crispy golden onion rings made with our house IPA batter, served with spicy aioli.</p>
+                                <div class="food-price">$8.50</div>
                             </div>
                         </div>
-                    </header>
-                    <div class="menu-header">
-                        <h1 class="heading-huge">Tasting Room Menu</h1>
-                        <p class="beerpagepara">Enjoy our chef-crafted dishes designed to pair perfectly with our handcrafted beers.</p>
-                    </div>
+                        
                     
-                    <!-- Photo Gallery -->
-                    <div class="gallery">
-                        <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Tasting room interior">
-                        <img src="https://images.unsplash.com/photo-1515003197210-e0cd71810b5f?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Chef preparing food">
-                        <img src="https://images.unsplash.com/photo-1544025162-d76694265947?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Food and beer pairing">
-                    </div>
-                    
-                    <!-- Menu Tabs -->
-                    <div class="menu-tabs">
-                        <div class="menu-tab active" data-tab="flatbreads">Flatbreads</div>
-                        <div class="menu-tab" data-tab="starters">Starters</div>
-                        <div class="menu-tab" data-tab="sandwiches">Sandwiches</div>
-                        <div class="menu-tab" data-tab="mains">Main Plates</div>
-                        <div class="menu-tab" data-tab="desserts">Desserts</div>
-                        <div class="menu-tab" data-tab="specials">Weekly Specials</div>
-                    </div>
-                    
-                    <!-- Flatbreads Tab -->
-                    <div id="flatbreads" class="tab-content active">
-                        <div class="menu-items">
-                            <!-- Flatbread 1 -->
-                            <div class="menu-item">
-                                <img src="https://images.unsplash.com/photo-1561350111-7daa4f284bc6?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Truffle Flatbread" class="menu-item-image">
-                                <div class="menu-item-content">
-                                    <h3 class="menu-item-title">Truffle Flatbread</h3>
-                                    <div class="menu-item-price">$14</div>
-                                    <p class="menu-item-desc">Wild mushrooms, truffle oil, caramelized onions, and fontina cheese on our house-made flatbread.</p>
-                                </div>
+                        
+                        <!-- Main Courses -->
+                        <div class="food-item" data-category="mains">
+                            <div class="food-image">
+                                <img src="https://images.unsplash.com/photo-1544025162-d76694265947" alt="BBQ Ribs"/>
                             </div>
-                            
-                            <!-- Flatbread 2 -->
-                            <div class="menu-item">
-                                <img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Spicy Pepperoni" class="menu-item-image">
-                                <div class="menu-item-content">
-                                    <h3 class="menu-item-title">Spicy Pepperoni</h3>
-                                    <div class="menu-item-price">$13</div>
-                                    <p class="menu-item-desc">Spicy pepperoni, mozzarella, chili flakes, and our house tomato sauce with a honey drizzle.</p>
-                                </div>
-                            </div>
-                            
-                            <!-- Flatbread 3 -->
-                            <div class="menu-item">
-                                <img src="https://images.unsplash.com/photo-1601924582970-9238bcb495d9?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Fig & Prosciutto" class="menu-item-image">
-                                <div class="menu-item-content">
-                                    <h3 class="menu-item-title">Fig & Prosciutto</h3>
-                                    <div class="menu-item-price">$15</div>
-                                    <p class="menu-item-desc">Fresh figs, prosciutto, goat cheese, arugula, and balsamic glaze on crispy flatbread.</p>
-                                </div>
+                            <div class="food-info">
+                                <h3 class="food-title">Stout-Braised Short Ribs</h3>
+                                <p class="food-description">Tender beef short ribs braised in our imperial stout, served with mashed potatoes and seasonal vegetables.</p>
+                                <div class="food-price">$22.95</div>
                             </div>
                         </div>
-                    </div>
-                    
-                    <!-- Starters Tab -->
-                    <div id="starters" class="tab-content">
-                        <div class="menu-items">
-                            <!-- Starter 1 -->
-                            <div class="menu-item">
-                                <img src="https://images.unsplash.com/photo-1601050690597-df0568f70950?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Beer Pretzels" class="menu-item-image">
-                                <div class="menu-item-content">
-                                    <h3 class="menu-item-title">House Pretzels</h3>
-                                    <div class="menu-item-price">$10</div>
-                                    <p class="menu-item-desc">Warm pretzels made with our IPA, served with beer cheese and stone-ground mustard.</p>
-                                </div>
+                        
+                        <div class="food-item" data-category="mains">
+                            <div class="food-image">
+                                <img src="https://images.unsplash.com/photo-1604908176997-125f25cc6f3d" alt="Fish and Chips"/>
                             </div>
-                            
-                            <!-- Starter 2 -->
-                            <div class="menu-item">
-                                <img src="https://images.unsplash.com/photo-1606755456206-b25206bfa433?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Wings" class="menu-item-image">
-                                <div class="menu-item-content">
-                                    <h3 class="menu-item-title">Alehouse Wings</h3>
-                                    <div class="menu-item-price">$12</div>
-                                    <p class="menu-item-desc">Crispy wings tossed in your choice of: IPA glaze, spicy stout BBQ, or dry rub.</p>
-                                </div>
-                            </div>
-                            
-                            <!-- Starter 3 -->
-                            <div class="menu-item">
-                                <img src="https://images.unsplash.com/photo-1607532941433-304659e8198a?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Charcuterie" class="menu-item-image">
-                                <div class="menu-item-content">
-                                    <h3 class="menu-item-title">Brewer's Board</h3>
-                                    <div class="menu-item-price">$18</div>
-                                    <p class="menu-item-desc">Artisan cheeses, cured meats, house pickles, nuts, and bread. Serves 2-4.</p>
-                                </div>
+                            <div class="food-info">
+                                <h3 class="food-title">Fish & Chips</h3>
+                                <p class="food-description">Beer-battered cod with hand-cut fries, coleslaw, and tartar sauce.<br></p>
+                                <div class="food-price">$18.50</div>
                             </div>
                         </div>
-                    </div>
-                    
-                    <!-- Sandwiches Tab -->
-                    <div id="sandwiches" class="tab-content">
-                        <div class="menu-items">
-                            <!-- Sandwich 1 -->
-                            <div class="menu-item">
-                                <img src="https://images.unsplash.com/photo-1551504734-5ee1c4a1479b?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Burger" class="menu-item-image">
-                                <div class="menu-item-content">
-                                    <h3 class="menu-item-title">Stout Burger</h3>
-                                    <div class="menu-item-price">$16</div>
-                                    <p class="menu-item-desc">Beef patty infused with our oatmeal stout, cheddar, bacon jam, on a brioche bun.</p>
-                                </div>
+                        
+                        <!-- Burgers -->
+                        <div class="food-item" data-category="burgers">
+                            <div class="food-image">
+                                <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd" alt="Classic Burger"/>
                             </div>
-                            
-                            <!-- Sandwich 2 -->
-                            <div class="menu-item">
-                                <img src="https://images.unsplash.com/photo-1606755962773-d324d0c1b872?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Chicken Sandwich" class="menu-item-image">
-                                <div class="menu-item-content">
-                                    <h3 class="menu-item-title">IPA Chicken Sandwich</h3>
-                                    <div class="menu-item-price">$14</div>
-                                    <p class="menu-item-desc">IPA-brined chicken, beer cheese, pickled onions, and arugula on ciabatta.</p>
-                                </div>
-                            </div>
-                            
-                            <!-- Sandwich 3 -->
-                            <div class="menu-item">
-                                <img src="https://images.unsplash.com/photo-1515542584322-7dd03a1b8c95?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Veggie Sandwich" class="menu-item-image">
-                                <div class="menu-item-content">
-                                    <h3 class="menu-item-title">Portobello Reuben</h3>
-                                    <div class="menu-item-price">$13</div>
-                                    <p class="menu-item-desc">Marinated portobello, sauerkraut, Swiss cheese, and thousand island on rye.</p>
-                                </div>
+                            <div class="food-info">
+                                <h3 class="food-title">The Classic Alehouse Burger</h3>
+                                <p class="food-description">1/2 lb beef patty with cheddar, lettuce, tomato, onion, and our special sauce on a brioche bun.</p>
+                                <div class="food-price">$15.95</div>
                             </div>
                         </div>
-                    </div>
-                    
-                    <!-- Mains Tab -->
-                    <div id="mains" class="tab-content">
-                        <div class="menu-items">
-                            <!-- Main 1 -->
-                            <div class="menu-item">
-                                <img src="https://images.unsplash.com/photo-1544025162-d76694265947?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Steak" class="menu-item-image">
-                                <div class="menu-item-content">
-                                    <h3 class="menu-item-title">Stout-Braised Short Rib</h3>
-                                    <div class="menu-item-price">$24</div>
-                                    <p class="menu-item-desc">Slow-braised in our imperial stout, served with mashed potatoes and seasonal veg.</p>
-                                </div>
+                        
+                        <div class="food-item" data-category="burgers">
+                            <div class="food-image">
+                                <img src="https://images.unsplash.com/photo-1551615593-ef5fe247e8f7" alt="Mushroom Swiss Burger"/>
                             </div>
-                            
-                            <!-- Main 2 -->
-                            <div class="menu-item">
-                                <img src="https://images.unsplash.com/photo-1603360946369-dc9bb6258143?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Fish and Chips" class="menu-item-image">
-                                <div class="menu-item-content">
-                                    <h3 class="menu-item-title">Beer-Battered Fish & Chips</h3>
-                                    <div class="menu-item-price">$19</div>
-                                    <p class="menu-item-desc">Cod fried in our pilsner batter, served with twice-cooked fries and tartar sauce.</p>
-                                </div>
-                            </div>
-                            
-                            <!-- Main 3 -->
-                            <div class="menu-item">
-                                <img src="https://images.unsplash.com/photo-1601050690597-df0568f70950?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Vegetarian" class="menu-item-image">
-                                <div class="menu-item-content">
-                                    <h3 class="menu-item-title">Mushroom Risotto</h3>
-                                    <div class="menu-item-price">$18</div>
-                                    <p class="menu-item-desc">Arborio rice cooked with wild mushrooms, white wine, and parmesan.</p>
-                                </div>
+                            <div class="food-info">
+                                <h3 class="food-title">Mushroom Swiss Burger</h3>
+                                <p class="food-description">Beef patty topped with sautéed mushrooms, Swiss cheese, and garlic aioli.</p>
+                                <div class="food-price">$16.95</div>
                             </div>
                         </div>
-                    </div>
-                    
-                    <!-- Desserts Tab -->
-                    <div id="desserts" class="tab-content">
-                        <div class="menu-items">
-                            <!-- Dessert 1 -->
-                            <div class="menu-item">
-                                <img src="https://images.unsplash.com/photo-1563805042-7684c019e1cb?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Chocolate Cake" class="menu-item-image">
-                                <div class="menu-item-content">
-                                    <h3 class="menu-item-title">Stout Chocolate Cake</h3>
-                                    <div class="menu-item-price">$9</div>
-                                    <p class="menu-item-desc">Rich chocolate cake made with our oatmeal stout, served with vanilla ice cream.</p>
-                                </div>
+                        
+                        <!-- Desserts -->
+                        <div class="food-item" data-category="desserts">
+                            <div class="food-image">
+                                <img src="https://images.unsplash.com/photo-1484723091739-30a097e8f929" alt="Chocolate Stout Cake"/>
                             </div>
-                            
-                            <!-- Dessert 2 -->
-                            <div class="menu-item">
-                                <img src="https://images.unsplash.com/photo-1551024506-0bccd828d307?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Cheesecake" class="menu-item-image">
-                                <div class="menu-item-content">
-                                    <h3 class="menu-item-title">IPA Cheesecake</h3>
-                                    <div class="menu-item-price">$8</div>
-                                    <p class="menu-item-desc">Creamy cheesecake with a hint of citrus IPA in the crust, topped with berry compote.</p>
-                                </div>
-                            </div>
-                            
-                            <!-- Dessert 3 -->
-                            <div class="menu-item">
-                                <img src="https://images.unsplash.com/photo-1497034825429-c343d7c6a68f?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Beer Float" class="menu-item-image">
-                                <div class="menu-item-content">
-                                    <h3 class="menu-item-title">Beer Float</h3>
-                                    <div class="menu-item-price">$7</div>
-                                    <p class="menu-item-desc">Vanilla ice cream in a glass of your choice of our beers (recommend porter or stout).</p>
-                                </div>
+                            <div class="food-info">
+                                <h3 class="food-title">Chocolate Stout Cake</h3>
+                                <p class="food-description">Rich chocolate cake made with our dark stout, served with vanilla ice cream.</p>
+                                <div class="food-price">$8.95</div>
                             </div>
                         </div>
-                    </div>
-                    
-                    <!-- Specials Tab -->
-                    <div id="specials" class="tab-content">
-                        <div class="menu-items">
-                            <!-- Special 1 -->
-                            <div class="menu-item">
-                                <img src="https://images.unsplash.com/photo-1603105037880-880cd4edfb0d?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Special Burger" class="menu-item-image">
-                                <div class="menu-item-content">
-                                    <h3 class="menu-item-title">Weekly Burger Special</h3>
-                                    <div class="menu-item-price">$17</div>
-                                    <p class="menu-item-desc">Ask your server about this week's special burger creation from our chef.</p>
-                                </div>
+                        
+                        <div class="food-item" data-category="desserts">
+                            <div class="food-image">
+                                <img src="https://images.unsplash.com/photo-1571115177098-24ec42ed204d" alt="Apple Crisp"/>
                             </div>
-                            
-                            <!-- Special 2 -->
-                            <div class="menu-item">
-                                <img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Salad" class="menu-item-image">
-                                <div class="menu-item-content">
-                                    <h3 class="menu-item-title">Seasonal Salad</h3>
-                                    <div class="menu-item-price">$12</div>
-                                    <p class="menu-item-desc">Fresh seasonal ingredients with house-made dressing featuring our beers.</p>
-                                </div>
-                            </div>
-                            
-                            <!-- Special 3 -->
-                            <div class="menu-item">
-                                <img src="https://images.unsplash.com/photo-1544025162-d76694265947?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Special Entree" class="menu-item-image">
-                                <div class="menu-item-content">
-                                    <h3 class="menu-item-title">Chef's Special Entree</h3>
-                                    <div class="menu-item-price">Market Price</div>
-                                    <p class="menu-item-desc">Our chef's creative dish featuring seasonal ingredients and beer pairings.</p>
-                                </div>
+                            <div class="food-info">
+                                <h3 class="food-title">Apple Crisp</h3>
+                                <p class="food-description">Warm apple crisp with cinnamon and oats, topped with caramel sauce.</p>
+                                <div class="food-price">$7.50</div>
                             </div>
                         </div>
                     </div>
                 </div>
             </section>
+            
+            <div class="spacer-regular"></div>
         </main>
+        
+        <!-- Same footer as beers page -->
+
+
+        <footer class="footer">
+            <div class="container">
+                <div class="footer-content">
+                    <div class="footer-main">
+                        <div class="footer-main-top">
+                            <a href="/" class="footer-brand w-inline-block">
+                                <img src="../../assets/farmcountry_logo.png" loading="lazy" alt="alehous" class="brand-image"/>
+                            </a>
+
+
+                            <a href="https://www.instagram.com/farmcountrybrewco/">
+                                <div class="social-links">
+                                    <img src="../../assets/footer/facebook.png" class="social-icon">
+                                    
+                                </div></a>
+                            
+                            
+                            <a href="https://www.instagram.com/farmcountrybrewco/">
+                            <div class="social-links">
+                                <img src="../../assets/footer/instagram.png" class="social-icon">
+                                
+                            </div></a>
+
+
+                           
+                        </div>
+                        <div class="footer-main-bottom">
+                            <div class="footer-nav">
+                                <a data-w-id="6594bc72-0cbd-5e39-3925-217204fdd9ed" href="/beers" class="footer-nav-link w-inline-block">
+                                    <div class="uppercase-large is-color-p2">tasting room menu</div>
+                                </a>
+                                <a href="/shop-variants/shop-v2" class="footer-nav-link w-inline-block">
+                                    <div class="uppercase-large is-color-p2">our beers</div>
+                                </a>
+                                <a href="/about" class="footer-nav-link w-inline-block">
+                                    <div class="uppercase-large is-color-p2">events</div>
+                                </a>
+                                <a href="/events" class="footer-nav-link w-inline-block">
+                                    <div class="uppercase-large is-color-p2">store</div>
+                                </a>
+                                <a href="/blog-variants/blog-v2" class="footer-nav-link w-inline-block">
+                                    <div class="uppercase-large is-color-p2">archived beers</div>
+                                </a>
+                                <a href="/faq" class="footer-nav-link w-inline-block">
+                                    <div class="uppercase-large is-color-p2">our story</div>
+                                </a>
+                                <a href="/wholesale" class="footer-nav-link w-inline-block">
+                                    <div class="uppercase-large is-color-p2">contact us</div>
+                                </a>
+                               
+                            </div>
+                    
+                            <div class="footer-legal">
+                                <div class="text-small is-color-p2">©Farm Country Brewing</div>
+                                <div class="footer-legal-links">
+                                    <a href="/privacy-policy" class="footer-legal-link w-inline-block">
+                                        <div class="text-small is-color-p2">Privacy Policy</div>
+                                    </a>
+                                    <a href="/shipping-returns" class="footer-legal-link w-inline-block">
+                                        <div class="text-small is-color-p2">Shipping &amp;Returns</div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="footer-info">
+                        <div class="special-wrapper">
+                            <h2 class="heading-large">Farm Country Brewing                                </h2>
+                        </div>
+                        <div class="footer-address">
+                            <div class="tag is-color-p2">
+                                <div class="uppercase-regular">#5 – 20555 56 Ave,
+                                    </div>
+                            </div>
+                            <div class="tag is-color-p2">
+                                <div class="uppercase-regular">Langley City, BC V3A 3Y9</div>
+                            </div>
+                        </div>
+                        <div class="footer-contact">
+                            <a href="https://www.google.com/maps?gs_lcrp=EgZjaHJvbWUqBggAEEUYOzIGCAAQRRg7Mg0IARAuGK8BGMcBGIAEMgcIAhAAGIAEMgYIAxBFGDkyBggEEEUYPDIGCAUQRRg9MgYIBhBFGD0yBggHEC4YQNIBCDI3OTVqMGo0qAIAsAIB&um=1&ie=UTF-8&fb=1&gl=in&sa=X&geocode=KTEuKFnHz4VUMQGZufjJJDVD&daddr=20555+56+Ave+%235,+Langley,+BC+V3A+3Y9,+Canada" target="_blank" class="special-link w-inline-block">
+                                <div class="uppercase-regular">get directions</div>
+                            </a>
+                            <a href="tel:+1 (778) 819-2288" class="special-link w-inline-block">
+                                <div class="uppercase-regular">+1 (778) 819-2288</div>
+                            </a>
+                            <a href="mailto:beer@farmcountrybrewing.com" class="special-link w-inline-block">
+                                <div class="uppercase-regular">beer@farmcountrybrewing.com</div>
+                            </a>
+                        </div>
+                        <div class="footer-hours">
+                            <div class="special-wrapper for-hours is-colors-s1">
+                                <div class="uppercase-regular">mon, wed</div>
+                                <div class="uppercase-regular">1pm - 8pm</div>
+                            </div>
+                            <div class="special-wrapper for-hours is-colors-s3">
+                                <div class="uppercase-regular">tue, thu</div>
+                                <div class="uppercase-regular">1pm - 9pm
+                                </div>
+                            </div>
+                            <div class="special-wrapper for-hours is-colors-s4">
+                                <div class="uppercase-regular">fri,sat                                    </div>
+                                <div class="uppercase-regular">12am - 11pm
+                                </div>
+                            </div>
+                            <div class="special-wrapper for-hours is-color-s2">
+                                <div class="uppercase-regular">sunday</div>
+                                <div class="uppercase-regular">12pm - 8pm</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
     </div>
 
+    <script src="https://d3e54v103j8qbb.cloudfront.net/js/jquery-3.5.1.min.dc5e7f18c8.js"></script>
     <script>
-        // Tab functionality
         document.addEventListener('DOMContentLoaded', function() {
-            const tabs = document.querySelectorAll('.menu-tab');
+            // Tab functionality for food menu
+            const foodTabs = document.querySelectorAll('.food-tab');
+            const foodItems = document.querySelectorAll('.food-item');
             
-            tabs.forEach(tab => {
+            foodTabs.forEach(tab => {
                 tab.addEventListener('click', function() {
-                    // Remove active class from all tabs and contents
-                    document.querySelectorAll('.menu-tab').forEach(t => t.classList.remove('active'));
-                    document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
-                    
+                    // Remove active class from all tabs
+                    foodTabs.forEach(t => t.classList.remove('active'));
                     // Add active class to clicked tab
                     this.classList.add('active');
                     
-                    // Show corresponding content
-                    const tabId = this.getAttribute('data-tab');
-                    document.getElementById(tabId).classList.add('active');
+                    const category = this.getAttribute('data-category');
+                    
+                    // Filter food items
+                    foodItems.forEach(item => {
+                        if (category === 'all' || item.getAttribute('data-category') === category) {
+                            item.style.display = 'block';
+                        } else {
+                            item.style.display = 'none';
+                        }
+                    });
                 });
             });
-            
-            // Initialize first tab as active
-            if (tabs.length > 0) {
-                tabs[0].click();
-            }
         });
     </script>
 
+
 <script src="https://d3e54v103j8qbb.cloudfront.net/js/jquery-3.5.1.min.dc5e7f18c8.js?site=6542a22dcd975cbfce7ba7cb" type="text/javascript" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
 <script src="https://assets-global.website-files.com/6542a22dcd975cbfce7ba7cb/js/webflow.57eed9c64.js" type="text/javascript"></script>
+
 
 </body>
 </html>
