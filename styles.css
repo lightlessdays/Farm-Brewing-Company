@@ -2,6 +2,13 @@ html {
     -ms-text-size-adjust: 100%;
     -webkit-text-size-adjust: 100%;
     font-family: sans-serif;
+    -webkit-tap-highlight-color: transparent;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
   }
   
   body {
@@ -4196,7 +4203,7 @@ html {
   }
   
   .brand {
-    width: 128px;
+    width: 196px;
     height: 128px;
     position: relative;
     top: -16px;
@@ -4234,7 +4241,7 @@ html {
   }
   
   .footer-brand {
-    width: 96px;
+    width: 196px;
     height: 96px;
   }
   
@@ -6557,10 +6564,10 @@ html {
     }
   
     .brand {
-      width: 96px;
-      height: 96px;
-      top: -8px;
-      left: -8px;
+      width: 76px;
+      height: 76px;
+      top: -6px;
+      left: -6px;
     }
   
     .footer-main-top {
@@ -7371,7 +7378,16 @@ html {
 
 
   @media screen and (max-width: 991px) {
-
+    .beer-tab {
+      padding: 10px 14px;
+      margin: 0 4px 4px;
+      cursor: pointer;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      font-weight: 300;
+      transition: all 0.3s ease;
+      font-size: 14px;
+  }
 
     .beerpagepara{
       font-size: 18px;
@@ -7382,7 +7398,21 @@ html {
 
 
   @media screen and (max-width: 991px) {
+
+
+
+
+
+
    .hideonmobile{
     display: none;
    }
+
+   .hideondesktop{
+    display: block !important;
+   }
+  }
+
+  .hideondesktop{
+    display: none;
   }
