@@ -105,7 +105,7 @@
                     <nav class="nav">
                         <a href="/" class="brand w-inline-block">
                             <img src="../assets/farmcountry_logo.png" loading="lazy" alt="Farm Country Brewing Logo" class="brand-image  hideonmobile" style="object-fit: contain;"/>
-                            <img src="./assets/farmcountry_logo_mobile.png" loading="lazy" alt="Farm Country Brewing Logo" class="brand-image  hideondesktop" style="object-fit: contain;" />
+                            <img src="../assets/farmcountry_logo_mobile.png" loading="lazy" alt="Farm Country Brewing Logo" class="brand-image  hideondesktop" style="object-fit: contain;" />
                         </a>
                         <div class="nav-buttons">
                             <a data-w-id="7f05b51b-9041-cb3d-b2fd-742ffecd78bd" href="#" class="menu-button w-inline-block">
@@ -254,7 +254,7 @@
                     </div>
                 </div>
             </header>
-            <div style="padding:50px;" class="hideonmobile"></div>
+            <div style="padding:80px;" class="hideonmobile"></div>
 
             <section class="intro">
                 <div class="container">
@@ -262,6 +262,200 @@
                     <p class="beerpagepara">Delicious dishes crafted to pair perfectly with our beers. Made with locally-sourced ingredients whenever possible.</p>
                 </div>
             </section>
+
+
+<!-- Add this right below the description and before the beer tabs section -->
+<section class="image-carousel">
+    <div class="container">
+        <div class="carousel-container">
+            <div class="carousel-track">
+                <div class="carousel-slide">
+                    <img src="../assets/gallery/tastingroom/tastingroom1.jpeg" alt="Brewery interior" loading="lazy" class="carousel-image">
+                </div>
+                <div class="carousel-slide">
+                    <img src="../assets/gallery/tastingroom/tastingroom2.jpeg" alt="Beer brewing process" loading="lazy" class="carousel-image">
+                </div>
+                <div class="carousel-slide">
+                    <img src="../assets/gallery/tastingroom/tastingroom3.jpeg" alt="Tasting room" loading="lazy" class="carousel-image">
+                </div>
+                <div class="carousel-slide">
+                    <img src="../assets/gallery/tastingroom/tastingroom4.jpeg" alt="Brewery events" loading="lazy" class="carousel-image">
+                </div>
+                <!-- Add more slides as needed -->
+            </div>
+          
+            <div class="carousel-nav">
+                <!-- Navigation dots will be added by JavaScript -->
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Add this CSS to your style section -->
+<style>
+    .image-carousel {
+        padding: 40px 0;
+        position: relative;
+    }
+    
+    .carousel-container {
+        position: relative;
+        max-width: 100%;
+        margin: 30px auto;
+        overflow: hidden;
+    }
+    
+    .carousel-track {
+        display: flex;
+        transition: transform 0.5s ease;
+    }
+    
+    .carousel-slide {
+        min-width: 100%;
+        padding: 0 10px;
+        box-sizing: border-box;
+    }
+    
+    .carousel-image {
+        width: 100%;
+        height:450px;
+        object-fit: cover;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    }
+    
+    .carousel-btn {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        background: rgba(0,0,0,0.5);
+        color: white;
+        border: none;
+        padding: 15px;
+        cursor: pointer;
+        font-size: 18px;
+        z-index: 10;
+        border-radius: 50%;
+        width: 40px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: background 0.3s;
+    }
+    
+    .carousel-btn:hover {
+        background: rgba(0,0,0,0.8);
+    }
+    
+    .carousel-btn-prev {
+        left: 20px;
+    }
+    
+    .carousel-btn-next {
+        right: 20px;
+    }
+    
+    .carousel-nav {
+        display: flex;
+        justify-content: center;
+        padding: 15px 0;
+    }
+    
+    .carousel-dot {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        background: #ccc;
+        margin: 0 5px;
+        cursor: pointer;
+        transition: background 0.3s;
+    }
+    
+    .carousel-dot.active {
+        background: #333;
+    }
+    
+    @media (max-width: 768px) {
+        .carousel-image {
+            height: 300px;
+        }
+    }
+</style>
+
+<!-- Add this JavaScript at the bottom of your file, before the closing body tag -->
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const track = document.querySelector('.carousel-track');
+        const slides = Array.from(document.querySelectorAll('.carousel-slide'));
+        const nextBtn = document.querySelector('.carousel-btn-next');
+        const prevBtn = document.querySelector('.carousel-btn-prev');
+        const nav = document.querySelector('.carousel-nav');
+        
+        let currentIndex = 0;
+        
+        // Create navigation dots
+        slides.forEach((slide, index) => {
+            const dot = document.createElement('div');
+            dot.classList.add('carousel-dot');
+            if(index === 0) dot.classList.add('active');
+            dot.addEventListener('click', () => {
+                goToSlide(index);
+            });
+            nav.appendChild(dot);
+        });
+        
+        const dots = document.querySelectorAll('.carousel-dot');
+        
+        // Update carousel position
+        function updateCarousel() {
+            track.style.transform = `translateX(-${currentIndex * 100}%)`;
+            
+            // Update active dot
+            dots.forEach((dot, index) => {
+                dot.classList.toggle('active', index === currentIndex);
+            });
+        }
+        
+        // Go to specific slide
+        function goToSlide(index) {
+            currentIndex = index;
+            updateCarousel();
+        }
+        
+        // Next slide
+        function nextSlide() {
+            currentIndex = (currentIndex + 1) % slides.length;
+            updateCarousel();
+        }
+        
+        // Previous slide
+        function prevSlide() {
+            currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+            updateCarousel();
+        }
+        
+        // Event listeners
+        nextBtn.addEventListener('click', nextSlide);
+        prevBtn.addEventListener('click', prevSlide);
+        
+        // Auto-advance (optional)
+        let autoSlide = setInterval(nextSlide, 5000);
+        
+        // Pause on hover
+        const carousel = document.querySelector('.carousel-container');
+        carousel.addEventListener('mouseenter', () => {
+            clearInterval(autoSlide);
+        });
+        
+        carousel.addEventListener('mouseleave', () => {
+            autoSlide = setInterval(nextSlide, 5000);
+        });
+    });
+</script>
+
+
+
             
             <div class="spacer-regular after-intro"></div>
             
@@ -269,7 +463,7 @@
                 <div class="container">
                     <!-- Food Tabs -->
                     <div class="food-tabs">
-                        <div class="food-tab active" data-category="all">All Items</div>
+
                         <div class="food-tab" data-category="starters">Shareables</div>
                         <div class="food-tab" data-category="mains">Mains</div>
                         <div class="food-tab" data-category="flatbreads">Flatbreads</div>
@@ -873,7 +1067,7 @@
 
 
                                 </h3>
-                                <p class="food-description">Cranberry beer meets vodka, uplifted by subtle floral rose cardamom notes for a unique, bold drink.
+                                <p class="food-description">Cranberry beer meets vodka, uplifted by floral rose cardamom notes for a unique, bold drink.
 
 
 
@@ -990,7 +1184,7 @@
 
 
                                 </h3>
-                                <p class="food-description">Classic beer flavor, zero alcohol. Perfect for a social sip without buzz.
+                                <p class="food-description">Classic beer flavor, zero alcohol. Perfect for a social sip without much buzz.
 
 
 
@@ -1015,7 +1209,7 @@
 
 
                                 </h3>
-                                <p class="food-description">Grape, cola, root beer, and more—carbonated favorites for all ages.
+                                <p class="food-description">Grape, cola, root beer, and more—carbonated beverage favorites for all ages.
 
 
 
@@ -1061,7 +1255,7 @@
 
 
                                 </h3>
-                                <p class="food-description">Freshly brewed, bold and comforting—served hot to energize your day.
+                                <p class="food-description">Freshly brewed, bold and comforting coffee—served hot to energize your day.
 
 
 
@@ -1117,6 +1311,370 @@
                                 </div>
                             </div>
                         </div>
+
+
+                        <!-- ON TAP -->
+
+                        <div role="listitem" class="food-item beers-item w-dyn-item" data-category="beer" style="box-shadow: none;">
+                            <a href="/beer/german-pilsner" class="beers-link w-inline-block">
+                                <div class="beers-image" style="position: relative;">
+                                    <img alt="German Pilsner" loading="lazy" src="../assets/beercans/german pilsner.webp" class="thumbnail" style="object-fit: cover;" />
+                                    <div style="position: absolute; top: 10px; left: 10px; background-color: black; color: white; padding: 3px 8px; border-radius: 12px; font-size: 12px; font-weight: bold;">CORE</div>
+                                </div>
+                                <div class="beers-summary">
+                                    <h2 class="heading-medium">German Pilsner</h2>
+                                    A crisp lager with floral notes and a clean finish, brewed with 100% German ingredients for a classic taste.
+                                    <div class="beers-abv">
+                                        <div class="uppercase-regular is-color-p3">
+                                            <svg class="icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M8 2L6 22H18L16 2H8Z" fill="none" stroke="currentColor" stroke-width="2" />
+                                                <path d="M12 10V16" stroke="currentColor" stroke-width="2" />
+                                            </svg>
+                                        </div>
+                                        <div class="uppercase-regular is-color-p3">5 OZ: $3.00</div>
+                                        <div class="uppercase-regular is-color-p3">
+                                            <svg class="icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M12 16C15 16 17 13 17 9V3H7V9C7 13 9 16 12 16Z" fill="none" stroke="currentColor" stroke-width="2" />
+                                                <path d="M12 16V22M9 22H15" stroke="currentColor" stroke-width="2" />
+                                            </svg>
+                                        </div>
+                                        <div class="uppercase-regular is-color-p3">12 OZ: $6.75</div>
+                                        <div class="uppercase-regular is-color-p3">
+                                            <svg class="icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M10 2H14V6C14 8 16 9 16 11V22H8V11C8 9 10 8 10 6V2Z" fill="none" stroke="currentColor" stroke-width="2" />
+                                                <path d="M10 6H14" stroke="currentColor" stroke-width="2" />
+                                            </svg>
+                                        </div>
+                                        <div class="uppercase-regular is-color-p3">16 OZ: $8</div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        
+                        <div role="listitem" class="food-item beers-item w-dyn-item" data-category="beer" style="box-shadow: none;">
+                            <a href="/beer/witty-by-nature" class="beers-link w-inline-block">
+                                <div class="beers-image" style="position: relative;">
+                                    <img alt="Witty by Nature" loading="lazy" src="../assets/beercans/wittybynature.webp" class="thumbnail" style="object-fit: cover;" />
+                                    <div style="position: absolute; top: 10px; left: 10px; background-color: black; color: white; padding: 3px 8px; border-radius: 12px; font-size: 12px; font-weight: bold;">SEASONAL</div>
+                                </div>
+                                <div class="beers-summary">
+                                    <h2 class="heading-medium">Witty by Nature</h2>
+                                    A refreshing wheat beer with bright citrus flavors and subtle orange peel notes. Smooth and easy to enjoy.
+                                    <div class="beers-abv">
+                                        <div class="uppercase-regular is-color-p3">
+                                            <svg class="icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M8 2L6 22H18L16 2H8Z" fill="none" stroke="currentColor" stroke-width="2" />
+                                                <path d="M12 10V16" stroke="currentColor" stroke-width="2" />
+                                            </svg>
+                                        </div>
+                                        <div class="uppercase-regular is-color-p3">5 OZ: $3.50</div>
+                                        <div class="uppercase-regular is-color-p3">
+                                            <svg class="icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M12 16C15 16 17 13 17 9V3H7V9C7 13 9 16 12 16Z" fill="none" stroke="currentColor" stroke-width="2" />
+                                                <path d="M12 16V22M9 22H15" stroke="currentColor" stroke-width="2" />
+                                            </svg>
+                                        </div>
+                                        <div class="uppercase-regular is-color-p3">12 OZ: $7.25</div>
+                                        <div class="uppercase-regular is-color-p3">
+                                            <svg class="icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M10 2H14V6C14 8 16 9 16 11V22H8V11C8 9 10 8 10 6V2Z" fill="none" stroke="currentColor" stroke-width="2" />
+                                                <path d="M10 6H14" stroke="currentColor" stroke-width="2" />
+                                            </svg>
+                                        </div>
+                                        <div class="uppercase-regular is-color-p3">16 OZ: $8.5</div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        
+                        <div role="listitem" class="food-item beers-item w-dyn-item" data-category="beer" style="box-shadow: none;">
+                            <a href="/beer/rice-lager" class="beers-link w-inline-block">
+                                <div class="beers-image" style="position: relative;">
+                                    <img alt="Rice Lager" loading="lazy" src="../assets/beercans/ricelager.webp" class="thumbnail" style="object-fit: cover;" />
+                                    <div style="position: absolute; top: 10px; left: 10px; background-color: black; color: white; padding: 3px 8px; border-radius: 12px; font-size: 12px; font-weight: bold;">SEASONAL</div>
+                                </div>
+                                <div class="beers-summary">
+                                    <h2 class="heading-medium">Rice Lager</h2>
+                                    Light and vibrant lager with pink grapefruit notes, blending Japanese tradition and New Zealand hops for a refreshing finish.
+                                    <div class="beers-abv">
+                                        <div class="uppercase-regular is-color-p3">
+                                            <svg class="icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M8 2L6 22H18L16 2H8Z" fill="none" stroke="currentColor" stroke-width="2" />
+                                                <path d="M12 10V16" stroke="currentColor" stroke-width="2" />
+                                            </svg>
+                                        </div>
+                                        <div class="uppercase-regular is-color-p3">5 OZ: $3.50</div>
+                                        <div class="uppercase-regular is-color-p3">
+                                            <svg class="icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M12 16C15 16 17 13 17 9V3H7V9C7 13 9 16 12 16Z" fill="none" stroke="currentColor" stroke-width="2" />
+                                                <path d="M12 16V22M9 22H15" stroke="currentColor" stroke-width="2" />
+                                            </svg>
+                                        </div>
+                                        <div class="uppercase-regular is-color-p3">12 OZ: $7.25</div>
+                                        <div class="uppercase-regular is-color-p3">
+                                            <svg class="icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M10 2H14V6C14 8 16 9 16 11V22H8V11C8 9 10 8 10 6V2Z" fill="none" stroke="currentColor" stroke-width="2" />
+                                                <path d="M10 6H14" stroke="currentColor" stroke-width="2" />
+                                            </svg>
+                                        </div>
+                                        <div class="uppercase-regular is-color-p3">16 OZ: $8.5</div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        
+                        <div role="listitem" class="food-item beers-item w-dyn-item" data-category="beer" style="box-shadow: none;">
+                            <a href="/beer/everyday-hazy-pale-ale" class="beers-link w-inline-block">
+                                <div class="beers-image" style="position: relative;">
+                                    <img alt="Everyday Hazy Pale Ale" loading="lazy" src="../assets/beercans/everydayhazypaleale.webp" class="thumbnail" style="object-fit: cover;" />
+                                    <div style="position: absolute; top: 10px; left: 10px; background-color: black; color: white; padding: 3px 8px; border-radius: 12px; font-size: 12px; font-weight: bold;">CORE</div>
+                                </div>
+                                <div class="beers-summary">
+                                    <h2 class="heading-medium">Everyday Hazy Pale Ale</h2>
+                                    A juicy pale ale with tropical fruit, peach, and citrus notes. Smooth, hazy, and perfect for every occasion.
+                                    <div class="beers-abv">
+                                        <div class="uppercase-regular is-color-p3">
+                                            <svg class="icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M8 2L6 22H18L16 2H8Z" fill="none" stroke="currentColor" stroke-width="2" />
+                                                <path d="M12 10V16" stroke="currentColor" stroke-width="2" />
+                                            </svg>
+                                        </div>
+                                        <div class="uppercase-regular is-color-p3">5 OZ: $3.00</div>
+                                        <div class="uppercase-regular is-color-p3">
+                                            <svg class="icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M12 16C15 16 17 13 17 9V3H7V9C7 13 9 16 12 16Z" fill="none" stroke="currentColor" stroke-width="2" />
+                                                <path d="M12 16V22M9 22H15" stroke="currentColor" stroke-width="2" />
+                                            </svg>
+                                        </div>
+                                        <div class="uppercase-regular is-color-p3">12 OZ: $6.75</div>
+                                        <div class="uppercase-regular is-color-p3">
+                                            <svg class="icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M10 2H14V6C14 8 16 9 16 11V22H8V11C8 9 10 8 10 6V2Z" fill="none" stroke="currentColor" stroke-width="2" />
+                                                <path d="M10 6H14" stroke="currentColor" stroke-width="2" />
+                                            </svg>
+                                        </div>
+                                        <div class="uppercase-regular is-color-p3">16 OZ: $8</div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        
+                        <div role="listitem" class="food-item beers-item w-dyn-item" data-category="beer" style="box-shadow: none;">
+                            <a href="/beer/haystacks-chocolate-porter" class="beers-link w-inline-block">
+                                <div class="beers-image" style="position: relative;">
+                                    <img alt="Haystacks Chocolate Porter" loading="lazy" src="../assets/beercans/haystackchocolateporter.webp" class="thumbnail" style="object-fit: cover;" />
+                                    <div style="position: absolute; top: 10px; left: 10px; background-color: black; color: white; padding: 3px 8px; border-radius: 12px; font-size: 12px; font-weight: bold;">SEASONAL</div>
+                                </div>
+                                <div class="beers-summary">
+                                    <h2 class="heading-medium">Haystacks Chocolate Porter</h2>
+                                    A rich porter with roasted malt, chocolate notes, and a creamy oat finish. Perfect for cozy nights.
+                                    <div class="beers-abv">
+                                        <div class="uppercase-regular is-color-p3">
+                                            <svg class="icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M8 2L6 22H18L16 2H8Z" fill="none" stroke="currentColor" stroke-width="2" />
+                                                <path d="M12 10V16" stroke="currentColor" stroke-width="2" />
+                                            </svg>
+                                        </div>
+                                        <div class="uppercase-regular is-color-p3">5 OZ: $3.50</div>
+                                        <div class="uppercase-regular is-color-p3">
+                                            <svg class="icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M12 16C15 16 17 13 17 9V3H7V9C7 13 9 16 12 16Z" fill="none" stroke="currentColor" stroke-width="2" />
+                                                <path d="M12 16V22M9 22H15" stroke="currentColor" stroke-width="2" />
+                                            </svg>
+                                        </div>
+                                        <div class="uppercase-regular is-color-p3">12 OZ: $7.25</div>
+                                        <div class="uppercase-regular is-color-p3">
+                                            <svg class="icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M10 2H14V6C14 8 16 9 16 11V22H8V11C8 9 10 8 10 6V2Z" fill="none" stroke="currentColor" stroke-width="2" />
+                                                <path d="M10 6H14" stroke="currentColor" stroke-width="2" />
+                                            </svg>
+                                        </div>
+                                        <div class="uppercase-regular is-color-p3">16 OZ: $8.5</div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        
+                        <div role="listitem" class="food-item beers-item w-dyn-item" data-category="beer" style="box-shadow: none;">
+                            <a href="/beer/california-love" class="beers-link w-inline-block">
+                                <div class="beers-image" style="position: relative;">
+                                    <img alt="California Love" loading="lazy" src="../assets/beercans/californialove.webp" class="thumbnail" style="object-fit: cover;" />
+                                    <div style="position: absolute; top: 10px; left: 10px; background-color: black; color: white; padding: 3px 8px; border-radius: 12px; font-size: 12px; font-weight: bold;">SEASONAL</div>
+                                </div>
+                                <div class="beers-summary">
+                                    <h2 class="heading-medium">California Love</h2>
+                                    A bold, hop-forward California-style beer with a smooth finish. The perfect brew to capture the spirit of the Golden State.
+                                    <div class="beers-abv">
+                                        <div class="uppercase-regular is-color-p3">
+                                            <svg class="icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M8 2L6 22H18L16 2H8Z" fill="none" stroke="currentColor" stroke-width="2" />
+                                                <path d="M12 10V16" stroke="currentColor" stroke-width="2" />
+                                            </svg>
+                                        </div>
+                                        <div class="uppercase-regular is-color-p3">5 OZ: $3.50</div>
+                                        <div class="uppercase-regular is-color-p3">
+                                            <svg class="icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M12 16C15 16 17 13 17 9V3H7V9C7 13 9 16 12 16Z" fill="none" stroke="currentColor" stroke-width="2" />
+                                                <path d="M12 16V22M9 22H15" stroke="currentColor" stroke-width="2" />
+                                            </svg>
+                                        </div>
+                                        <div class="uppercase-regular is-color-p3">12 OZ: $7.25</div>
+                                        <div class="uppercase-regular is-color-p3">
+                                            <svg class="icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M10 2H14V6C14 8 16 9 16 11V22H8V11C8 9 10 8 10 6V2Z" fill="none" stroke="currentColor" stroke-width="2" />
+                                                <path d="M10 6H14" stroke="currentColor" stroke-width="2" />
+                                            </svg>
+                                        </div>
+                                        <div class="uppercase-regular is-color-p3">16 OZ: $8.5</div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        
+                        <div role="listitem" class="food-item beers-item w-dyn-item" data-category="beer" style="box-shadow: none;">
+                            <a href="/beer/india-pale-ale" class="beers-link w-inline-block">
+                                <div class="beers-image" style="position: relative;">
+                                    <img alt="India Pale Ale" loading="lazy" src="../assets/beercans/indiapaleale.webp" class="thumbnail" style="object-fit: cover;" />
+                                    <div style="position: absolute; top: 10px; left: 10px; background-color: black; color: white; padding: 3px 8px; border-radius: 12px; font-size: 12px; font-weight: bold;">CORE</div>
+                                </div>
+                                <div class="beers-summary">
+                                    <h2 class="heading-medium">India Pale Ale</h2>
+                                    A classic IPA with bright tropical aromas and a hoppy punch. Perfect for lovers of bold, balanced beers.
+                                    <div class="beers-abv">
+                                        <div class="uppercase-regular is-color-p3">
+                                            <svg class="icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M8 2L6 22H18L16 2H8Z" fill="none" stroke="currentColor" stroke-width="2" />
+                                                <path d="M12 10V16" stroke="currentColor" stroke-width="2" />
+                                            </svg>
+                                        </div>
+                                        <div class="uppercase-regular is-color-p3">5 OZ: $3.00</div>
+                                        <div class="uppercase-regular is-color-p3">
+                                            <svg class="icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M12 16C15 16 17 13 17 9V3H7V9C7 13 9 16 12 16Z" fill="none" stroke="currentColor" stroke-width="2" />
+                                                <path d="M12 16V22M9 22H15" stroke="currentColor" stroke-width="2" />
+                                            </svg>
+                                        </div>
+                                        <div class="uppercase-regular is-color-p3">12 OZ: $6.75</div>
+                                        <div class="uppercase-regular is-color-p3">
+                                            <svg class="icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M10 2H14V6C14 8 16 9 16 11V22H8V11C8 9 10 8 10 6V2Z" fill="none" stroke="currentColor" stroke-width="2" />
+                                                <path d="M10 6H14" stroke="currentColor" stroke-width="2" />
+                                            </svg>
+                                        </div>
+                                        <div class="uppercase-regular is-color-p3">16 OZ: $8</div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        
+                        <div role="listitem" class="food-item beers-item w-dyn-item" data-category="beer" style="box-shadow: none;">
+                            <a href="/beer/raspberry-cranberry-sour" class="beers-link w-inline-block">
+                                <div class="beers-image" style="position: relative;">
+                                    <img alt="Raspberry Cranberry Sour" loading="lazy" src="../assets/beercans/raspberrycranberrysour.webp" class="thumbnail" style="object-fit: cover;" />
+                                    <div style="position: absolute; top: 10px; left: 10px; background-color: black; color: white; padding: 3px 8px; border-radius: 12px; font-size: 12px; font-weight: bold;">SEASONAL</div>
+                                </div>
+                                <div class="beers-summary">
+                                    <h2 class="heading-medium">Raspberry Cranberry Sour</h2>
+                                    A tart, fruity sour packed with raspberry and cranberry flavors. Vibrant, refreshing, and perfect for sour beer fans.
+                                    <div class="beers-abv">
+                                        <div class="uppercase-regular is-color-p3">
+                                            <svg class="icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M8 2L6 22H18L16 2H8Z" fill="none" stroke="currentColor" stroke-width="2" />
+                                                <path d="M12 10V16" stroke="currentColor" stroke-width="2" />
+                                            </svg>
+                                        </div>
+                                        <div class="uppercase-regular is-color-p3">5 OZ: $3.50</div>
+                                        <div class="uppercase-regular is-color-p3">
+                                            <svg class="icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M12 16C15 16 17 13 17 9V3H7V9C7 13 9 16 12 16Z" fill="none" stroke="currentColor" stroke-width="2" />
+                                                <path d="M12 16V22M9 22H15" stroke="currentColor" stroke-width="2" />
+                                            </svg>
+                                        </div>
+                                        <div class="uppercase-regular is-color-p3">12 OZ: $7.25</div>
+                                        <div class="uppercase-regular is-color-p3">
+                                            <svg class="icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M10 2H14V6C14 8 16 9 16 11V22H8V11C8 9 10 8 10 6V2Z" fill="none" stroke="currentColor" stroke-width="2" />
+                                                <path d="M10 6H14" stroke="currentColor" stroke-width="2" />
+                                            </svg>
+                                        </div>
+                                        <div class="uppercase-regular is-color-p3">16 OZ: $8.5</div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        
+                        <div role="listitem" class="food-item beers-item w-dyn-item" data-category="beer" style="box-shadow: none;">
+                            <a href="/beer/sausage-party" class="beers-link w-inline-block">
+                                <div class="beers-image" style="position: relative;">
+                                    <img alt="Sausage Party" loading="lazy" src="../assets/beercans/sausageparty.webp" class="thumbnail" style="object-fit: cover;" />
+                                    <div style="position: absolute; top: 10px; left: 10px; background-color: black; color: white; padding: 3px 8px; border-radius: 12px; font-size: 12px; font-weight: bold;">SEASONAL</div>
+                                </div>
+                                <div class="beers-summary">
+                                    <h2 class="heading-medium">Sausage Party</h2>
+                                    A smoky, malt-forward beer crafted to pair perfectly with grilled dishes. Bold and unique in every sip.
+                                    <div class="beers-abv">
+                                        <div class="uppercase-regular is-color-p3">
+                                            <svg class="icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M8 2L6 22H18L16 2H8Z" fill="none" stroke="currentColor" stroke-width="2" />
+                                                <path d="M12 10V16" stroke="currentColor" stroke-width="2" />
+                                            </svg>
+                                        </div>
+                                        <div class="uppercase-regular is-color-p3">5 OZ: $3.50</div>
+                                        <div class="uppercase-regular is-color-p3">
+                                            <svg class="icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M12 16C15 16 17 13 17 9V3H7V9C7 13 9 16 12 16Z" fill="none" stroke="currentColor" stroke-width="2" />
+                                                <path d="M12 16V22M9 22H15" stroke="currentColor" stroke-width="2" />
+                                            </svg>
+                                        </div>
+                                        <div class="uppercase-regular is-color-p3">12 OZ: $7.25</div>
+                                        <div class="uppercase-regular is-color-p3">
+                                            <svg class="icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M10 2H14V6C14 8 16 9 16 11V22H8V11C8 9 10 8 10 6V2Z" fill="none" stroke="currentColor" stroke-width="2" />
+                                                <path d="M10 6H14" stroke="currentColor" stroke-width="2" />
+                                            </svg>
+                                        </div>
+                                        <div class="uppercase-regular is-color-p3">16 OZ: $8.5</div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        
+                        <div role="listitem" class="food-item beers-item w-dyn-item" data-category="beer" style="box-shadow: none;">
+                            <a href="/beer/the-big-sipper-double-ipa" class="beers-link w-inline-block">
+                                <div class="beers-image" style="position: relative;">
+                                    <img alt="The Big Sipper Double IPA" loading="lazy" src="../assets/beercans/thebigsipperdoubleipa.webp" class="thumbnail" style="object-fit: cover;" />
+                                    <div style="position: absolute; top: 10px; left: 10px; background-color: black; color: white; padding: 3px 8px; border-radius: 12px; font-size: 12px; font-weight: bold;">SEASONAL</div>
+                                </div>
+                                <div class="beers-summary">
+                                    <h2 class="heading-medium">The Big Sipper Double IPA</h2>
+                                    A bold double IPA packed with tropical fruit and pine flavors. Perfect for those who love strong, hoppy beers.
+                                    <div class="beers-abv">
+                                        <div class="uppercase-regular is-color-p3">
+                                            <svg class="icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M8 2L6 22H18L16 2H8Z" fill="none" stroke="currentColor" stroke-width="2" />
+                                                <path d="M12 10V16" stroke="currentColor" stroke-width="2" />
+                                            </svg>
+                                        </div>
+                                        <div class="uppercase-regular is-color-p3">5 OZ: $3.50</div>
+                                        <div class="uppercase-regular is-color-p3">
+                                            <svg class="icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M12 16C15 16 17 13 17 9V3H7V9C7 13 9 16 12 16Z" fill="none" stroke="currentColor" stroke-width="2" />
+                                                <path d="M12 16V22M9 22H15" stroke="currentColor" stroke-width="2" />
+                                            </svg>
+                                        </div>
+                                        <div class="uppercase-regular is-color-p3">12 OZ: $7.25</div>
+                                        <div class="uppercase-regular is-color-p3">
+                                            <svg class="icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M10 2H14V6C14 8 16 9 16 11V22H8V11C8 9 10 8 10 6V2Z" fill="none" stroke="currentColor" stroke-width="2" />
+                                                <path d="M10 6H14" stroke="currentColor" stroke-width="2" />
+                                            </svg>
+                                        </div>
+                                        <div class="uppercase-regular is-color-p3">16 OZ: $8.5</div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    
                        
                         
                        
@@ -1261,6 +1819,29 @@
             const foodTabs = document.querySelectorAll('.food-tab');
             const foodItems = document.querySelectorAll('.food-item');
             
+            // Function to filter items
+            function filterItems(category) {
+                foodItems.forEach(item => {
+                    if (category === 'all' || item.getAttribute('data-category') === category) {
+                        item.style.display = 'block';
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
+            }
+            
+            // Set Shareables as default active tab
+            const shareablesTab = document.querySelector('.food-tab[data-category="starters"]');
+            if (shareablesTab) {
+                // Remove active class from all tabs
+                foodTabs.forEach(t => t.classList.remove('active'));
+                // Add active class to Shareables tab
+                shareablesTab.classList.add('active');
+                // Filter to show only Shareables
+                filterItems('starters');
+            }
+            
+            // Add click handlers for all tabs
             foodTabs.forEach(tab => {
                 tab.addEventListener('click', function() {
                     // Remove active class from all tabs
@@ -1269,15 +1850,7 @@
                     this.classList.add('active');
                     
                     const category = this.getAttribute('data-category');
-                    
-                    // Filter food items
-                    foodItems.forEach(item => {
-                        if (category === 'all' || item.getAttribute('data-category') === category) {
-                            item.style.display = 'block';
-                        } else {
-                            item.style.display = 'none';
-                        }
-                    });
+                    filterItems(category);
                 });
             });
         });
